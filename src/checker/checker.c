@@ -6,7 +6,7 @@
 /*   By: abaudot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 14:13:40 by abaudot           #+#    #+#             */
-/*   Updated: 2021/06/11 17:35:49 by abaudot          ###   ########.fr       */
+/*   Updated: 2021/06/12 15:29:43 by abaudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,28 @@ static inline void init(int size, char **av, t_stack **st, int *array)
 	init_stack(st[1], 0, NULL);
 }
 
-static int operation(t_stack **st, const char *s)
+static char operation(t_stack **st, const char *s)
 {
+	char res;
+
 	if (s[0] == 'p' &&  (s[1] == 'a' || s[1] == 'b') && s[2] == 0)
-		pop_push(st[s[1] - 'a'], st[(s[1] - 'a' + 1) & 1]);
+		res = spp(st[s[1] - 'a'], st[(s[1] - 'a' + 1) & 1]);
 	else if (s[0] == 's' && (s[1] == 'a' || s[1] == 'b') && s[2] == 0)
-		swap(st[s[1] - 'a']);
+		res = sswap(st[s[1] - 'a']);
 	else if (s[0] == 's' && s[1] == 's' && s[2] == 0)
-		biswap(st);
+		res = biswap(st);
 	else if (s[0] == 'r' && (s[1] == 'a' || s[1] == 'b') && s[2] == 0)
-		head_to_tail(st[s[1] - 'a']);
+		res = shtt(st[s[1] - 'a']);
 	else if (s[0] == 'r' && s[1] == 'r' && s[2] == 0)
-		bihtt(st);
+		res = bihtt(st);
 	else if (s[0] == 'r' && s[1] == 'r' && (s[2] == 'a' || s[2] == 'b')
 			&& s[3] == 0)
-		tail_to_head(st[s[2] - 'a']);
+		res = stth(st[s[2] - 'a']);
 	else if (s[0] == 'r' && s[1] == 'r' && s[2] == 'r' && s[3] == 0)
-		bitth(st);
+		res = bitth(st);
 	else
 		return (0);
-	return (1);
+	return (res);
 }
 
 static int read_(t_stack **st, const int pres)

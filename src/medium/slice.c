@@ -6,7 +6,7 @@
 /*   By: abaudot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 17:20:54 by abaudot           #+#    #+#             */
-/*   Updated: 2021/06/11 16:23:38 by abaudot          ###   ########.fr       */
+/*   Updated: 2021/06/12 16:55:47 by abaudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ void slice(t_stack **st, const int *data)
 	t_array slice_id;
 
 	slice_id = sorted_seq(data, st[0]);
+//	for (int i = 0; i < slice_id.size; ++i)
+//		printf("%d |", slice_id.data[i]);
 	while (st[0]->size > slice_id.size)
 	{
 		if (!interpolation_srch(&slice_id, (st[0]->head)->item))
@@ -121,6 +123,9 @@ void slice(t_stack **st, const int *data)
 		else
 			rx(st[0], "ra\n");
 	}
+//	printf("post slice: \n");
+//	print_stack(st[0]);
+//	print_stack(st[1]);
 	if (slice_id.size)
 		free(slice_id.data);
 }

@@ -6,7 +6,7 @@
 /*   By: abaudot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 15:40:13 by abaudot           #+#    #+#             */
-/*   Updated: 2021/06/07 18:21:24 by abaudot          ###   ########.fr       */
+/*   Updated: 2021/06/12 17:13:30 by abaudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ static void same_move(t_stack **st, t_tuple move)
 	int tmp;
 	int key;
 	
+
 	key = (move[0] < 0);
 	if (key)
 		tmp = max(move[0], move[1]);
@@ -94,6 +95,7 @@ void	next_mv(t_stack **st)
 {
 	t_tuple	move;
 	static const t_op	x[] = {rx, rrx};
+	static const char *const s[] = {"ra\n", "rra\n", "rb\n", "rrb\n"};
 	int key;
 
 	move[0] = -st[0]->size;
@@ -105,12 +107,12 @@ void	next_mv(t_stack **st)
 	if (key)
 		move[0] = -move[0];
 	while (move[0]--)
-		x[key](st[0], "ra\n");
+		x[key](st[0], s[key]);
 	key = (move[1] < 0);
 	if (key)
 		move[1] = -move[1];
 	while (move[1]--)
-		x[key](st[1], "rb\n");
+		x[key](st[1], s[key + 2]);
 	px(st, "pa\n");
 }
 
@@ -118,9 +120,17 @@ void medium_sort(t_stack **st, const int *data)
 {
 	int align;
 
+	//print_stack(st[0]);
+	//print_stack(st[1]);
 	slice(st, data);
+	//print_stack(st[0]);
+	//print_stack(st[1]);
 	while (st[1]->size)
+	{
 		next_mv(st);
+	//print_stack(st[0]);
+	//print_stack(st[1]);
+	}
 	align = find_min(st[0]);
 	if (align > st[0]->size - align)
 	{

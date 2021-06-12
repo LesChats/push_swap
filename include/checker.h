@@ -6,7 +6,7 @@
 /*   By: abaudot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 14:38:26 by abaudot           #+#    #+#             */
-/*   Updated: 2021/06/11 17:11:41 by abaudot          ###   ########.fr       */
+/*   Updated: 2021/06/12 15:31:46 by abaudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,12 @@ uint8_t				update_string(t_string *str, const char *src, int32_t n);
 
 void				ft_memcpy(void *dest, const void *src, uint32_t n);
 
-void				bihtt(t_stack **st);
-void				biswap(t_stack **st);
-void				bitth(t_stack **st);
+char				sswap(t_stack *st);
+char				shtt(t_stack *st);
+char				stth(t_stack *st);
+char				spp(t_stack *dst, t_stack *src);
+char				bihtt(t_stack **st);
+char				biswap(t_stack **st);
+char				bitth(t_stack **st);
 
 #endif
