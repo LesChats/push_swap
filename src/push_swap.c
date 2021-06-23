@@ -6,48 +6,53 @@
 /*   By: abaudot <abaudot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 15:26:31 by abaudot           #+#    #+#             */
-/*   Updated: 2021/06/12 15:26:56 by abaudot          ###   ########.fr       */
+/*   Updated: 2021/06/23 22:32:38 by abaudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void freeAssange(t_stack **st, int *data)
+static void	freeAssange(t_stack **st, int *data)
 {
 	free_stack(st[0]);
 	free_stack(st[1]);
 	free(data);
 }
 
-static inline void init(int size, char **av, t_stack **st, int *array)
+static inline void	init(int size, char **av, t_stack **st, int *array)
 {
-	if (!parse(array, av, size))
+	int	rsize;
+
+	rsize = parse(array, av, size);
+	if (!rsize)
 	{
-		free(array);
 		write(1, "error\n", 6);
+		free(array);
 		exit(1);
-	}	
-	if (!(init_stack(st[0], size, array)))
+	}
+	if (!(init_stack(st[0], rsize, array)))
 	{
-		free(array);
 		write(1, "error\n", 6);
+		free(array);
 		exit(1);
 	}
 	init_stack(st[1], 0, NULL);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_stack a;
-	t_stack b;
+	t_stack	a;
+	t_stack	b;
 	int		*data;
-	const int		pres = (av[1][0] == '-' && av[1][1] == 'p');
-	t_stack *ab[2];
-	
+	t_stack	*ab[2];
+
 	ab[0] = &a;
 	ab[1] = &b;
-	data = malloc(sizeof(int) * ac - (1 + pres));
-	init(ac - (1 + pres), av + (1 + pres), ab, data);
+	if (ac < 2)
+		return (write(1, "\n", 1));
+	//data = malloc(sizeof(int) * (ac - 1));
+	init(ac - 1, av + 1, ab, data);
+	print_stack(ab[0]);
 	if (is_sorted(ab[0]))
 	{
 		write(1, "\n", 1);
@@ -58,8 +63,6 @@ int main(int ac, char **av)
 		small_sort(ab);
 	else
 		medium_sort(ab, data);
-	if (pres)
-		print_stack(ab[0]);
 	freeAssange(ab, data);
 	return (0);
 }

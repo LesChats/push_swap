@@ -6,18 +6,18 @@
 /*   By: abaudot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 17:20:54 by abaudot           #+#    #+#             */
-/*   Updated: 2021/06/12 16:55:47 by abaudot          ###   ########.fr       */
+/*   Updated: 2021/06/23 18:30:24 by abaudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int indice(const t_stack *st, int *res)
+static int	indice(const t_stack *st, int *res)
 {
 	struct s_frame	*tmp_i;
 	struct s_frame	*tmp_j;
-	int	i;
-	int	j;
+	int				i;
+	int				j;
 
 	tmp_i = st->head;
 	i = 0;
@@ -39,13 +39,13 @@ static int indice(const t_stack *st, int *res)
 	return (maxin(res, st->size));
 }
 
-static void build_array(const t_stack *st, t_array *r)
+static void	build_array(const t_stack *st, t_array *r)
 {
 	struct s_frame	*t;
 	int	*keys;
 	int tmp;
 	int i;
-	
+
 	keys = (int *)malloc(sizeof(int) * st->size);
 	tmp = indice(st, keys);
 	t = st->tail;
@@ -65,12 +65,12 @@ static void build_array(const t_stack *st, t_array *r)
 	free(keys);
 }
 
-static char interpolation_srch(const t_array *arr, const int item)
+static char	interpolation_srch(const t_array *arr, const int item)
 {
-	const int *data = arr->data;
-	int low;
-	int high;
-	int mid;
+	const int	*data = arr->data;
+	int			low;
+	int			high;
+	int			mid;
 
 	low = 0;
 	high = arr->size - 1;
@@ -94,7 +94,7 @@ static char interpolation_srch(const t_array *arr, const int item)
 static t_array sorted_seq(const int *data, const t_stack *st)
 {
 	t_stack	st_data;
-	t_array res;
+	t_array	res;
 	int		i;
 
 	init_stack(&st_data, st->size, data);
@@ -112,8 +112,6 @@ void slice(t_stack **st, const int *data)
 	t_array slice_id;
 
 	slice_id = sorted_seq(data, st[0]);
-//	for (int i = 0; i < slice_id.size; ++i)
-//		printf("%d |", slice_id.data[i]);
 	while (st[0]->size > slice_id.size)
 	{
 		if (!interpolation_srch(&slice_id, (st[0]->head)->item))
@@ -123,9 +121,6 @@ void slice(t_stack **st, const int *data)
 		else
 			rx(st[0], "ra\n");
 	}
-//	printf("post slice: \n");
-//	print_stack(st[0]);
-//	print_stack(st[1]);
 	if (slice_id.size)
 		free(slice_id.data);
 }

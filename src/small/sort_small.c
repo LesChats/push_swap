@@ -6,7 +6,7 @@
 /*   By: abaudot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:56:04 by abaudot           #+#    #+#             */
-/*   Updated: 2021/06/09 15:07:00 by abaudot          ###   ########.fr       */
+/*   Updated: 2021/06/23 15:02:44 by abaudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	sort_2(t_stack *st)
 {
 	if ((st->head)->item > (st->head->next)->item)
 	{
-		printf ("%d > %d\n", st->head->item, st->head->next->item);
+//		printf ("%d > %d\n", st->head->item, st->head->next->item);
 		sx(st, "sa\n");
 	}
 }

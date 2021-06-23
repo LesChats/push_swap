@@ -6,7 +6,7 @@
 /*   By: abaudot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 14:10:22 by abaudot           #+#    #+#             */
-/*   Updated: 2021/06/09 14:41:35 by abaudot          ###   ########.fr       */
+/*   Updated: 2021/06/23 21:51:15 by abaudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "medium.h"
 # include <unistd.h>
 
-char	parse(int *array, char **av, const int size);
+int		parse(int *array, char **av, const int size);
 
 void	sx(t_stack *st, const char *out);
 void	rrx(t_stack *st, const char *out);
@@ -27,7 +27,6 @@ void	px(t_stack **sts, const char *out);
 void	rrr(t_stack **sts);
 void	rr(t_stack **sts);
 void	ss(t_stack **sts);
-
 
 int		maxin(const int *array, unsigned long len);
 int		abs(const int a);

@@ -6,78 +6,17 @@
 /*   By: abaudot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 15:40:13 by abaudot           #+#    #+#             */
-/*   Updated: 2021/06/12 17:13:30 by abaudot          ###   ########.fr       */
+/*   Updated: 2021/06/23 18:34:07 by abaudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int find_place(const t_stack *st, const int x)
-{
-	struct s_frame	*frame;
-	struct s_frame	*back_frame;
-	int	i;
-	
-	frame = st->head;
-	back_frame = frame;
-	i = 0;
-	while (i < st->size)
-	{
-		if (x < frame->item && x > (frame->prev)->item)
-			return (i);
-		if (x > back_frame->item && x < (back_frame->next)->item)
-			return (-i + 1);
-		frame = frame->next;
-		back_frame = back_frame->prev;
-		++i;
-	}
-	i = find_max(st) + 1;
-	if (i == st->size)
-		i = 0;
-	if (i > st->size - i)
-		i = -(st->size - i);
-	return (i);
-}
-
-static inline void equal_(t_tuple a, t_tuple b)
-{
-	a[0] = b[0];
-	a[1] = b[1];
-}
-
-static void	find_bestm(t_stack **st, t_tuple move)
-{
-	int	i;
-	t_tuple	tmp;
-	struct s_frame *frame;
-	struct s_frame *back_frame;
-
-	frame = st[1]->head;
-	back_frame = frame;
-	i = -1;
-	while (++i < st[1]->size)
-	{
-		if (count_op(i, 0) >= count_op(move[0], move[1]))
-			break ;
-		tmp[1] = i;
-		tmp[0] = find_place(st[0], frame->item);
-		if (count_op(tmp[0], tmp[1]) < count_op(move[0], move[1]))
-			equal_(move, tmp);
-		tmp[1] = -i;
-		tmp[0] = find_place(st[0], back_frame->item);
-		if (count_op(tmp[0], tmp[1]) < count_op(move[0], move[1]))
-			equal_(move, tmp);
-		frame = frame->next;
-		back_frame = back_frame->prev;
-	}
-}
-
-static void same_move(t_stack **st, t_tuple move)
+static void	same_move(t_stack **st, t_tuple move)
 {
 	static const t_opxx	xx[] = {rr, rrr};
-	int tmp;
-	int key;
-	
+	int					tmp;
+	int					key;
 
 	key = (move[0] < 0);
 	if (key)
@@ -91,12 +30,12 @@ static void same_move(t_stack **st, t_tuple move)
 		xx[key](st);
 }
 
-void	next_mv(t_stack **st)
+static void	next_mv(t_stack **st)
 {
-	t_tuple	move;
-	static const t_op	x[] = {rx, rrx};
-	static const char *const s[] = {"ra\n", "rra\n", "rb\n", "rrb\n"};
-	int key;
+	t_tuple						move;
+	static const t_op			x[] = {rx, rrx};
+	static const char *const	s[] = {"ra\n", "rra\n", "rb\n", "rrb\n"};
+	int							key;
 
 	move[0] = -st[0]->size;
 	move[1] = st[0]->size;
@@ -116,21 +55,13 @@ void	next_mv(t_stack **st)
 	px(st, "pa\n");
 }
 
-void medium_sort(t_stack **st, const int *data)
+void	medium_sort(t_stack **st, const int *data)
 {
-	int align;
+	int	align;
 
-	//print_stack(st[0]);
-	//print_stack(st[1]);
 	slice(st, data);
-	//print_stack(st[0]);
-	//print_stack(st[1]);
 	while (st[1]->size)
-	{
 		next_mv(st);
-	//print_stack(st[0]);
-	//print_stack(st[1]);
-	}
 	align = find_min(st[0]);
 	if (align > st[0]->size - align)
 	{

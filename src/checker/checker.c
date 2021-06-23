@@ -6,7 +6,7 @@
 /*   By: abaudot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 14:13:40 by abaudot           #+#    #+#             */
-/*   Updated: 2021/06/12 15:29:43 by abaudot          ###   ########.fr       */
+/*   Updated: 2021/06/23 22:32:41 by abaudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,22 @@ static void freeAssange(t_stack **st, int *data)
 
 static inline void init(int size, char **av, t_stack **st, int *array)
 {
-	if (!parse(array, av, size))
+	int	rsize;
+
+	rsize = parse(array, av, size);
+	if (!rsize)
 	{
-		free(array);
 		write(1, "error\n", 6);
+		free(array);
 		exit(1);
 	}	
-	if (!(init_stack(st[0], size, array)))
+	if (!(init_stack(st[0], rsize, array)))
 	{
-		free(array);
 		write(1, "error\n", 6);
+		free(array);
 		exit(1);
 	}
+	print_stack(st[0]);
 	init_stack(st[1], 0, NULL);
 }
 
@@ -64,8 +68,10 @@ static int read_(t_stack **st, const int pres)
 {
 	t_string	s;
 
+	write(1, "ok\n" , 3);
 	if (!initilize_string(&s, 4))
 		return (0);
+	write(1, "ok\n" , 3);
 	if (pres)
 		print_stack(st[0]);
 	while (getnextline(0, &s) > 0)
@@ -90,21 +96,23 @@ int main(int ac, char **av)
 {
 	t_stack a;
 	t_stack b;
-	const int pres = (av[1][0] == '-' && av[1][1] == 'p');
+	//const int pres = (av[1][0] == '-' && av[1][1] == 'p');
 	int		*data;
 	t_stack *ab[2];
 	
 	ab[0] = &a;
 	ab[1] = &b;
-	data = malloc(sizeof(int) * ac - (1 + pres));
-	init(ac - (1 + pres), av + (1 + pres), ab, data);
+//	data = malloc(sizeof(int) * (ac - (1 + pres)));
+	data = malloc(sizeof(int) * (ac - 1));
+	//init(ac - (1 + pres), av + (1 + pres), ab, data);
+	init(ac - (1), av + (1), ab, data);
 	if (is_sorted(ab[0]))
 	{
 		write(1, "OK\n", 3);
 		freeAssange(ab, data);
 		return (0);
 	}
-	if (!read_(ab, pres))
+	if (!read_(ab, 1))
 		write(1, "error\n", 6);
 	else if (is_sorted(ab[0]) && ab[1]->size == 0)
 		write(1, "OK\n", 3);

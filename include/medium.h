@@ -6,7 +6,7 @@
 /*   By: abaudot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 12:29:22 by abaudot           #+#    #+#             */
-/*   Updated: 2021/06/07 17:24:50 by abaudot          ###   ########.fr       */
+/*   Updated: 2021/06/23 19:27:45 by abaudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,14 @@ typedef struct s_array
 {
 	int	*data;
 	int	size;
-} t_array;
+}				t_array;
 
-typedef  int t_tuple[2];
+typedef int		t_tuple[2];
 
+typedef void	(*t_opxx)(t_stack**);
+typedef void	(*t_op)(t_stack*, const char*);
 
-typedef void	(*t_opxx)(t_stack **);
-typedef void	(*t_op)(t_stack *, const char *);
-
-
-void slice(t_stack **st, const int *data);
+void			slice(t_stack **st, const int *data);
+void			find_bestm(t_stack **st, t_tuple move);
 
 #endif

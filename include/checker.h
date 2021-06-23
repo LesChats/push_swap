@@ -6,14 +6,16 @@
 /*   By: abaudot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 14:38:26 by abaudot           #+#    #+#             */
-/*   Updated: 2021/06/12 15:31:46 by abaudot          ###   ########.fr       */
+/*   Updated: 2021/06/23 18:09:05 by abaudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECKER_H
 # define CHECKER_H
+
 # include "push_swap.h"
 # include <stdint.h>
+
 /*
 **	Magic number for fast read
 */
