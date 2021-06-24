@@ -1,16 +1,43 @@
 #include <stdlib.h>
 
-static inline int trimspace(char *str)
+static inline int ft_strlen(char *str)
 {
 	int i;
 
 	i = 0;
-	while (str[i] == ' ')
+	while (str[i])
 		++i;
 	return (i);
 }
+
+static char ft_atoi(const char *s, int *res)
+{
+	unsigned	tmp;
+
+	*res = 0;
+	if (*s == '-')
+	{
+		while (1)
+		{
+			tmp = (unsigned)((*++s) - '0');
+			if (tmp > 9)
+				break ;
+			*res = *res * 10 - tmp;
+		}
+		return (*s == 0);
+	}
+	while (1)
+	{
+		tmp = (unsigned)((*s) - '0');
+		if (tmp > 9)
+			break ;
+		*res = *res * 10 + tmp;
+		++s;
+	}
+	return (*s == 0);
+}
 		
-static char ft_atoi(const char *s, int *res, int *i)
+static char ft_atoi_mov(const char *s, int *res, int *i)
 {
 	unsigned	tmp;
 
@@ -51,30 +78,46 @@ static char is_in(const int *arr, const int target, const int size)
 	return (0);
 }
 
-int	parse(int *array, char **av, const int size)
+int	parse_multi_arg(int **array, char **av, const int size)
 {
-	int	i;
-	int	j;
-	int	k;
-	int	num;
-	
-	if (!array)
-		return (0);
-	k = 0;
+	int i;
+	int num;
+
+	*array = (int*)malloc(sizeof(int) * size);
 	i = 0;
 	while (i < size)
 	{
-		j = trimspace(av[i]);
-		while (av[i][j])
-		{
-			if (!ft_atoi(av[i], &num, &j))
-				return (0);
-			if (is_in(array, num, k))
-					return (0);
-			array[k++] = num;
-			j += trimspace(av[i] + j);
-		}
+		if (!ft_atoi(av[i], &num))
+			return (0);
+		if (is_in(*array, num, i))
+			return (0);
+		*array[i] = num;
 		++i;
+	}
+	return (size);
+}
+
+int	parse_string(int **array, char *av)
+{
+	const int	size = ft_strlen(av) * 0.5 + 1;
+	int			num;
+	int			i;
+	int			k;
+
+	*array = (int*)malloc(sizeof(int) * size);
+	i = 0;
+	k = 0;
+	while (av[i])
+	{
+		while (av[i] == ' ')
+			++i;
+		if (!ft_atoi_mov(av, &num, &i))
+			return (0);
+		if(is_in(*array, num, k))
+			return (0);
+		*array[k] = num;
+		++k;
 	}
 	return (k);
 }
+

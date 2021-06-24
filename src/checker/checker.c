@@ -6,7 +6,7 @@
 /*   By: abaudot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 14:13:40 by abaudot           #+#    #+#             */
-/*   Updated: 2021/06/23 22:32:41 by abaudot          ###   ########.fr       */
+/*   Updated: 2021/06/24 13:16:53 by abaudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,15 @@ static void freeAssange(t_stack **st, int *data)
 	free(data);
 }
 
-static inline void init(int size, char **av, t_stack **st, int *array)
+static inline int	*init(int size, char **av, t_stack **st)
 {
 	int	rsize;
+	int	*array;
 
-	rsize = parse(array, av, size);
+	if (size != 1)
+		rsize = parse_multi_arg(array, av, size);
+	else
+		rsize = parse_string(array, *av);
 	if (!rsize)
 	{
 		write(1, "error\n", 6);
@@ -38,6 +42,7 @@ static inline void init(int size, char **av, t_stack **st, int *array)
 	}
 	print_stack(st[0]);
 	init_stack(st[1], 0, NULL);
+	return (array);
 }
 
 static char operation(t_stack **st, const char *s)
@@ -103,9 +108,9 @@ int main(int ac, char **av)
 	ab[0] = &a;
 	ab[1] = &b;
 //	data = malloc(sizeof(int) * (ac - (1 + pres)));
-	data = malloc(sizeof(int) * (ac - 1));
+//	data = malloc(sizeof(int) * (ac - 1));
 	//init(ac - (1 + pres), av + (1 + pres), ab, data);
-	init(ac - (1), av + (1), ab, data);
+	data = init(ac - (1), av + (1), ab);
 	if (is_sorted(ab[0]))
 	{
 		write(1, "OK\n", 3);

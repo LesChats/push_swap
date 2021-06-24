@@ -1,6 +1,7 @@
 SRCS += src/math.c
 SRCS += src/medium/slice.c
 SRCS += src/medium/sort.c
+SRCS += src/medium/find_place.c
 SRCS += src/op1.c
 SRCS += src/op2.c
 SRCS += src/operation.c
