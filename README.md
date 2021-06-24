@@ -41,3 +41,9 @@ As the structure of my src file reveal's as was originally planning to implement
 Something inspired by _**quicksort**_ should be able to be much more effective when dealing whit bigger stacks.
 
 Too bad, discovering that y was already meeting the requirement for the maximum mark I didn't find the motivation to go for better performance.
+
+# Bonus
+
+make bonus
+
+and you get a checker
