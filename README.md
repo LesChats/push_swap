@@ -5,12 +5,18 @@ Simple but sufficient "insert sort" style push_swap for 42 school.
 The algorithm work's like that:
 
 1) Convert the input into a "stack". stack is implemented as a very simple double-linked list.
+
 2) The slicing part:
-  The goal here is to identify the biggest "already sorted sequence in the stack" considering that we can push bad elements into stack B.
-3) The insert part:
-  taking the elements pushed to stack B one by one we push them back to stack A in their expected final place as effectively that we can
   
- I may try to add more detail about how the algorithm works in the future, but that was the general idea, in the meantime, just ask me.
+    The goal here is to identify the biggest "already sorted sequence in the stack" considering that we can push bad elements into stack B.
+
+3) The insert part:
+  
+    taking the elements pushed to stack B one by one we push them back to stack A in their expected final place as effectively that we can.
+    
+    
+    
+ I may try to add more detail about how the algorithm works in the future, but that was the general idea, in the meantime, just ask me.
   (abaudot)
 
 # Result
