@@ -6,7 +6,7 @@
 /*   By: abaudot <abaudot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 15:26:31 by abaudot           #+#    #+#             */
-/*   Updated: 2021/06/24 13:39:24 by abaudot          ###   ########.fr       */
+/*   Updated: 2021/06/24 20:00:04 by abaudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,27 @@ static void	freeAssange(t_stack **st, int *data)
 	free(data);
 }
 
-static inline int *init(int size, char **av, t_stack **st)
+static inline void	init(int size, char **av, t_stack **st, int **arr)
 {
 	int	rsize;
-	int	*array = NULL;
-	
+
 	if (size != 1)
-		rsize = parse_multi_arg(&array, av, size);
+		rsize = parse_multi_arg(arr, av, size);
 	else
-		rsize = parse_string(&array, *av);
+		rsize = parse_string(arr, *av);
 	if (!rsize)
 	{
-		write(1, "error\n", 6);
-		free(array);
+		write(1, "Error\n", 6);
+		free(*arr);
 		exit(1);
 	}
-	if (!(init_stack(st[0], rsize, array)))
+	if (!(init_stack(st[0], rsize, *arr)))
 	{
-		write(1, "error\n", 6);
-		free(array);
+		write(1, "Error\n", 6);
+		free(*arr);
 		exit(1);
 	}
 	init_stack(st[1], 0, NULL);
-	return (array);
 }
 
 int	main(int ac, char **av)
@@ -54,12 +52,10 @@ int	main(int ac, char **av)
 	ab[0] = &a;
 	ab[1] = &b;
 	if (ac < 2)
-		return (write(1, "\n", 1));
-	data = init(ac - 1, av + 1, ab);
-	print_stack(ab[0]);
+		return (0);
+	init(ac - 1, av + 1, ab, &data);
 	if (is_sorted(ab[0]))
 	{
-		write(1, "\n", 1);
 		freeAssange(ab, data);
 		return (0);
 	}

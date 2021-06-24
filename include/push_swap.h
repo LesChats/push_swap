@@ -6,7 +6,7 @@
 /*   By: abaudot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 14:10:22 by abaudot           #+#    #+#             */
-/*   Updated: 2021/06/24 13:39:22 by abaudot          ###   ########.fr       */
+/*   Updated: 2021/06/24 20:31:04 by abaudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "medium.h"
 # include <unistd.h>
 
+int		ft_strlen(char *str);
 int		parse_multi_arg(int **array, char **av, const int size);
 int		parse_string(int **array, char *av);
 

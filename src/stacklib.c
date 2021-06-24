@@ -6,13 +6,13 @@
 /*   By: abaudot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 17:01:19 by abaudot           #+#    #+#             */
-/*   Updated: 2021/06/07 17:08:40 by abaudot          ###   ########.fr       */
+/*   Updated: 2021/06/24 20:35:18 by abaudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
-int find_min(const t_stack *st)
+int	find_min(const t_stack *st)
 {
 	struct s_frame	*tmp;
 	int				i;
@@ -35,7 +35,7 @@ int find_min(const t_stack *st)
 	return (res);
 }
 
-int find_max(const t_stack *st)
+int	find_max(const t_stack *st)
 {
 	struct s_frame	*tmp;
 	int				i;
@@ -56,4 +56,14 @@ int find_max(const t_stack *st)
 		tmp = tmp->next;
 	}
 	return (res);
+}
+
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		++i;
+	return (i);
 }

@@ -6,25 +6,22 @@
 /*   By: abaudot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:56:04 by abaudot           #+#    #+#             */
-/*   Updated: 2021/06/23 15:02:44 by abaudot          ###   ########.fr       */
+/*   Updated: 2021/06/24 20:30:29 by abaudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
 static void	sort_2(t_stack *st)
 {
 	if ((st->head)->item > (st->head->next)->item)
-	{
-//		printf ("%d > %d\n", st->head->item, st->head->next->item);
 		sx(st, "sa\n");
-	}
 }
 
-static void sort_3(t_stack *st)
+static void	sort_3(t_stack *st)
 {
-	const int min = find_min(st);
+	const int	min = find_min(st);
+
 	if (min == 0)
 	{
 		sx(st, "sa\n");
@@ -46,7 +43,7 @@ static void sort_3(t_stack *st)
 
 static void	sort_4(t_stack **st)
 {
-	const int min = find_min(st[0]);
+	const int	min = find_min(st[0]);
 
 	if (min == 1)
 		sx(st[0], "sa\n");
@@ -67,7 +64,7 @@ static void	sort_4(t_stack **st)
 
 static void	sort_5(t_stack **st)
 {
-	const int min = find_min(st[0]);
+	const int	min = find_min(st[0]);
 
 	if (min == 1)
 		sx(st[0], "sa\n");
@@ -91,7 +88,7 @@ static void	sort_5(t_stack **st)
 	px(st, "pa\n");
 }
 
-void small_sort(t_stack **st)
+void	small_sort(t_stack **st)
 {
 	if (st[0]->size == 2)
 		sort_2(st[0]);

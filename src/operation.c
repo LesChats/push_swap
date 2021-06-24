@@ -6,7 +6,7 @@
 /*   By: abaudot <abaudot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 15:26:11 by abaudot           #+#    #+#             */
-/*   Updated: 2021/06/12 15:26:13 by abaudot          ###   ########.fr       */
+/*   Updated: 2021/06/24 20:02:00 by abaudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@
 **	considering the data is just an int, it is much faster (en readable)
 ** to just swap the data rather than the nodes
 */
-void swap(t_stack *st)
+void	swap(t_stack *st)
 {
-	const int tmp = (st->head)->item;
+	const int	tmp = (st->head)->item;
 
 	(st->head)->item = ((st->head)->next)->item;
 	((st->head)->next)->item = tmp;
 }
 
-void pop_push(t_stack *dst, t_stack *src)
+void	pop_push(t_stack *dst, t_stack *src)
 {
-	struct s_frame *tmp;
+	struct s_frame	*tmp;
 
 	tmp = src->head;
 	src->head = tmp->next;

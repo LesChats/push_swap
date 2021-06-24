@@ -6,15 +6,15 @@
 /*   By: abaudot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 18:54:01 by abaudot           #+#    #+#             */
-/*   Updated: 2021/06/23 17:53:28 by abaudot          ###   ########.fr       */
+/*   Updated: 2021/06/24 20:09:44 by abaudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "stack.h"
 
-static struct s_frame *new_frame(const int value)
+static struct s_frame	*new_frame(const int value)
 {
-	struct s_frame *res;
+	struct s_frame	*res;
 
 	res = (struct s_frame *)malloc(sizeof(struct s_frame));
 	if (!res)
@@ -52,8 +52,8 @@ char	init_stack(t_stack *st, const int size, const int *tab)
 
 char	free_stack(t_stack *st)
 {
-	struct s_frame *rmv;
-	struct s_frame *next;
+	struct s_frame	*rmv;
+	struct s_frame	*next;
 
 	rmv = st->head;
 	while (st->size--)
@@ -86,7 +86,7 @@ int	is_sorted(t_stack *st)
 {
 	struct s_frame	*tmp;
 	int				i;
-	
+
 	if (st->size < 2)
 		return (1);
 	tmp = st->head;

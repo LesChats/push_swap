@@ -6,7 +6,7 @@
 /*   By: abaudot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 12:11:31 by abaudot           #+#    #+#             */
-/*   Updated: 2021/06/12 14:53:44 by abaudot          ###   ########.fr       */
+/*   Updated: 2021/06/24 19:52:16 by abaudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	px(t_stack **sts, const char *out)
 {
-	const int dst = out[1] - 'a';
-	const int src = (dst + 1) & 1;
+	const int	dst = out[1] - 'a';
+	const int	src = (dst + 1) & 1;
 
 	pop_push(sts[dst], sts[src]);
 	write(1, out, 3);

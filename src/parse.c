@@ -1,18 +1,19 @@
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abaudot <abaudot@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/06/24 20:34:27 by abaudot           #+#    #+#             */
+/*   Updated: 2021/06/24 20:34:33 by abaudot          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+#include "push_swap.h"
 
-static inline int ft_strlen(char *str)
+static char	ft_atoi(const char *s, int *res)
 {
-	int i;
-
-	i = 0;
-	while (str[i])
-		++i;
-	return (i);
-}
-
-static char ft_atoi(const char *s, int *res)
-{
-	unsigned	tmp;
+	unsigned int	tmp;
 
 	*res = 0;
 	if (*s == '-')
@@ -36,10 +37,10 @@ static char ft_atoi(const char *s, int *res)
 	}
 	return (*s == 0);
 }
-		
-static char ft_atoi_mov(const char *s, int *res, int *i)
+
+static char	ft_atoi_mov(const char *s, int *res, int *i)
 {
-	unsigned	tmp;
+	unsigned int	tmp;
 
 	*res = 0;
 	if (s[*i] == '-')
@@ -64,9 +65,9 @@ static char ft_atoi_mov(const char *s, int *res, int *i)
 	return (s[*i] == 0 || s[*i] == ' ');
 }
 
-static char is_in(const int *arr, const int target, const int size)
+static char	is_in(const int *arr, const int target, const int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < size)
@@ -80,10 +81,12 @@ static char is_in(const int *arr, const int target, const int size)
 
 int	parse_multi_arg(int **array, char **av, const int size)
 {
-	int i;
-	int num;
+	int	i;
+	int	num;
 
-	*array = (int*)malloc(sizeof(int) * size);
+	*array = (int *)malloc(sizeof(int) * size);
+	if (!*array)
+		return (0);
 	i = 0;
 	while (i < size)
 	{
@@ -91,7 +94,7 @@ int	parse_multi_arg(int **array, char **av, const int size)
 			return (0);
 		if (is_in(*array, num, i))
 			return (0);
-		*array[i] = num;
+		(*array)[i] = num;
 		++i;
 	}
 	return (size);
@@ -104,7 +107,9 @@ int	parse_string(int **array, char *av)
 	int			i;
 	int			k;
 
-	*array = (int*)malloc(sizeof(int) * size);
+	*array = (int *)malloc(sizeof(int) * size);
+	if (!*array)
+		return (0);
 	i = 0;
 	k = 0;
 	while (av[i])
@@ -113,11 +118,10 @@ int	parse_string(int **array, char *av)
 			++i;
 		if (!ft_atoi_mov(av, &num, &i))
 			return (0);
-		if(is_in(*array, num, k))
+		if (is_in(*array, num, k))
 			return (0);
-		*array[k] = num;
+		(*array)[k] = num;
 		++k;
 	}
 	return (k);
 }
-

@@ -6,7 +6,7 @@
 /*   By: abaudot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 17:20:54 by abaudot           #+#    #+#             */
-/*   Updated: 2021/06/23 18:30:24 by abaudot          ###   ########.fr       */
+/*   Updated: 2021/06/24 20:28:09 by abaudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ static int	indice(const t_stack *st, int *res)
 static void	build_array(const t_stack *st, t_array *r)
 {
 	struct s_frame	*t;
-	int	*keys;
-	int tmp;
-	int i;
+	int				*keys;
+	int				tmp;
+	int				i;
 
 	keys = (int *)malloc(sizeof(int) * st->size);
 	tmp = indice(st, keys);
@@ -91,7 +91,7 @@ static char	interpolation_srch(const t_array *arr, const int item)
 	return (0);
 }
 
-static t_array sorted_seq(const int *data, const t_stack *st)
+static t_array	sorted_seq(const int *data, const t_stack *st)
 {
 	t_stack	st_data;
 	t_array	res;
@@ -107,9 +107,9 @@ static t_array sorted_seq(const int *data, const t_stack *st)
 	return (res);
 }
 
-void slice(t_stack **st, const int *data)
+void	slice(t_stack **st, const int *data)
 {
-	t_array slice_id;
+	t_array	slice_id;
 
 	slice_id = sorted_seq(data, st[0]);
 	while (st[0]->size > slice_id.size)
