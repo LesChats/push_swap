@@ -8,7 +8,9 @@ The algorithm work's like that:
 
 2) The slicing part:
   
+    
     The goal here is to identify the biggest "already sorted sequence in the stack" considering that we can push bad elements into stack B.
+
 
 3) The insert part:
   
