@@ -6,7 +6,7 @@
 /*   By: abaudot <abaudot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/12 15:26:31 by abaudot           #+#    #+#             */
-/*   Updated: 2021/06/24 20:00:04 by abaudot          ###   ########.fr       */
+/*   Updated: 2021/07/06 14:16:09 by abaudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,10 @@ int	main(int ac, char **av)
 	}
 	if (ab[0]->size < 6)
 		small_sort(ab);
-	else
+	else if (ab[0]->size < TRESHOLD)
 		medium_sort(ab, data);
+	else
+		large_sort(ab, data);
 	freeAssange(ab, data);
 	return (0);
 }

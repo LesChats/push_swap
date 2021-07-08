@@ -6,7 +6,7 @@
 /*   By: abaudot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 18:55:08 by abaudot           #+#    #+#             */
-/*   Updated: 2021/06/23 18:08:25 by abaudot          ###   ########.fr       */
+/*   Updated: 2021/07/05 02:49:50 by abaudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,7 @@ void			head_to_tail(t_stack *st);
 */
 int				find_min(const t_stack *st);
 int				find_max(const t_stack *st);
+int				get_max(const t_stack *st);
+int				get_min(const t_stack *st);
 
 #endif

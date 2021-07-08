@@ -6,7 +6,7 @@
 /*   By: abaudot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 14:10:22 by abaudot           #+#    #+#             */
-/*   Updated: 2021/06/24 20:31:04 by abaudot          ###   ########.fr       */
+/*   Updated: 2021/07/06 17:29:38 by abaudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 
 # include "stack.h"
 # include "medium.h"
+# include "large.h"
 # include <unistd.h>
+
+# define TRESHOLD	350
 
 int		ft_strlen(char *str);
 int		parse_multi_arg(int **array, char **av, const int size);
@@ -38,4 +41,5 @@ int		count_op(int a, int b);
 
 void	small_sort(t_stack **st);
 void	medium_sort(t_stack **st, const int *data);
+void	large_sort(t_stack **st, int *data);
 #endif

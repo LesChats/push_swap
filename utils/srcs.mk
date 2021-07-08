@@ -10,3 +10,7 @@ SRCS += src/push_swap.c
 SRCS += src/small/sort_small.c
 SRCS += src/stack.c
 SRCS += src/stacklib.c
+SRCS += src/large/quicksort.c
+SRCS += src/large/spliting.c
+SRCS += src/large/sort.c
+

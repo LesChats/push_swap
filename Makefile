@@ -6,7 +6,7 @@
 #    By: abaudot <abaudot@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/24 20:43:31 by abaudot           #+#    #+#              #
-#    Updated: 2021/06/24 20:43:44 by abaudot          ###   ########.fr        #
+#    Updated: 2021/07/08 12:07:41 by abaudot          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,13 +46,15 @@ all : $(NAME1)
 $(OBJS_DIR)/%.o: src/%.c $(INCLUDES)
 	@$(PRECOMPILE)
 	@$(CC) $(CFLAGS) -c -o $@ $<
-#	@echo "$(BLUE)Created: $(@:%=%) $(EOC)"
+	@echo $(BLUE) "Created:" $(@:%=%) $(EOC)
 
 $(NAME1): $(OBJS)
-	$(CC) -o $@ $^ $(CFLAGS)
+	@$(CC) -o $@ $^ $(CFLAGS)
+	@echo $(GREEN)"\n *** push_swap is make ! ***"$(EOC)
 
 $(NAME2): $(OBJS_BONUS)
-	$(CC) -o $@ $^ $(CFLAGS)
+	@$(CC) -o $@ $^ $(CFLAGS)
+	@echo $(PURPLE)"\n *** checker is done ! ***"$(EOC)
 
 bonus: $(NAME1) $(NAME2)
 
@@ -63,3 +65,5 @@ fclean: clean
 	@rm -f $(NAME2)
 re: fclean
 	make all
+
+.PHONY: all clean fclean re

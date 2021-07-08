@@ -6,7 +6,7 @@
 /*   By: abaudot <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 17:01:19 by abaudot           #+#    #+#             */
-/*   Updated: 2021/06/24 20:35:18 by abaudot          ###   ########.fr       */
+/*   Updated: 2021/07/05 18:28:34 by abaudot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,42 @@ int	find_min(const t_stack *st)
 		tmp = tmp->next;
 	}
 	return (res);
+}
+
+int	get_min(const t_stack *st)
+{
+	struct s_frame	*tmp;
+	int				i;
+	int				min;
+
+	tmp = st->head->next;
+	min = st->head->item;
+	i = 0;
+	while (++i < st->size)
+	{
+		if (tmp->item < min)
+			min = tmp->item;
+		tmp = tmp->next;
+	}
+	return (min);
+}
+
+int	get_max(const t_stack *st)
+{
+	struct s_frame	*tmp;
+	int				i;
+	int				max;
+
+	tmp = st->head->next;
+	max = st->head->item;
+	i = 0;
+	while (++i < st->size)
+	{
+		if (tmp->item > max)
+			max = tmp->item;
+		tmp = tmp->next;
+	}
+	return (max);
 }
 
 int	find_max(const t_stack *st)
