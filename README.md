@@ -1,4 +1,4 @@
-Simple but sufficient "insert sort" style push_swap for 42 school.
+Simple but sufficient "insert sort" + fast "Quicksort" style push_swap for 42 school.
 
 # Algorithm
 
