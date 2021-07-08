@@ -62,7 +62,7 @@ Doing 500 random sample test: (cf tester)
 
 ~~Too bad, discovering that y was already meeting the requirement for the maximum mark I didn't find the motivation to go for better performance.~~  
 
-Update: Have done this. I Still can improve the algorhim for small (size < 6) stack's Today the maximum operation for 5 elements stack is 10.  
+Update: I've done this. I Still can improve the algorhim for small (size < 6) stack's Today the maximum operation for 5 elements stack is 10.  
 # Bonus
 
 make bonus
