@@ -64,20 +64,20 @@ static void	build_array(const t_stack *st, t_array *r)
 	}
 	free(keys);
 }
-
-static char	interpolation_srch(const t_array *arr, const int item)
+//bug found by JO42 <3 much love. int --> int64_t // float --> double 
+static char	interpolation_srch(const t_array *arr, const int64_t item)
 {
 	const int	*data = arr->data;
-	int			low;
-	int			high;
-	int			mid;
+	int64_t		low;
+	int64_t		high;
+	int64_t		mid;
 
 	low = 0;
 	high = arr->size - 1;
 	while (data[high] != data[low] && item <= data[low] && item >= data[high])
 	{
 		mid = low
-			 + ((float)(high - low) / (data[high] - data[low]))
+			 + ((double)(high - low) / (data[high] - data[low]))
 			 * (item - data[low]);
 		if (data[mid] > item)
 			low = mid + 1;
